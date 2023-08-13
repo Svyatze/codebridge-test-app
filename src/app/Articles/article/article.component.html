@@ -2,12 +2,12 @@
   <mat-spinner *ngIf="isLoading"></mat-spinner>
   <div class="article-container" *ngIf="!isLoading">
     <div class="article-container_cover">
-      <img src="{{article.imagePath}}" alt="Pic">
+      <img src="{{article.image_url}}" alt="Pic">
     </div>
     <div class="article-container_content">
       <div class="article-container_content-float">
         <h1>{{article.title}}</h1>
-        <p>{{article.content}}</p>
+        <p>{{article.summary}}</p>
       </div>
     </div>
     <mat-dialog-actions align="start">

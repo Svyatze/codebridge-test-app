@@ -1,31 +1,24 @@
 import { Injectable } from '@angular/core';
-import { ArticleModel } from "./article.model";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ArticlesService {
-  private articles: ArticleModel[] = [];
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-  //to enhance methods below
-  getArticles(params?: string) {
+  getArticles(params?: string): Observable<any> {
+    let apiUrl = 'https://api.spaceflightnewsapi.net/v4/articles/';
     if (params) {
-    return this.http.get<any>(`https://api.spaceflightnewsapi.net/v4/articles/?search=${params}`)
-    } else {
-      return this.http.get<any>(`https://api.spaceflightnewsapi.net/v4/articles/`)
+      apiUrl = `https://api.spaceflightnewsapi.net/v4/articles/?search=${params}`;
     }
+    return this.http.get<any>(apiUrl);
   }
 
-  //to improve getArticleById() method
-  getArticleById(id: string | null) {
-    return this.http.get<{
-      id: string,
-      image_url: string,
-      published_at: string,
-      title: string,
-      summary: string,
-    }>(`https://api.spaceflightnewsapi.net/v4/articles/${id}`)
+  getArticleById(id: string | null): Observable<any> {
+    return this.http.get<any>(
+      `https://api.spaceflightnewsapi.net/v4/articles/${id}`
+    );
   }
 }

@@ -1,6 +1,7 @@
 export interface ArticleModel {
   id: string,
   title: string,
-  content: string,
-  imagePath: string,
+  summary: string,
+  image_url: string,
+  published_at: string,
 }

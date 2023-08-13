@@ -12,14 +12,23 @@ import { HttpClientModule } from "@angular/common/http";
 import { ArticleComponent } from './Articles/article/article.component';
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatListModule } from "@angular/material/list";
+import { HighlightPipe } from "./highlight.pipe";
+import { MatInputModule } from "@angular/material/input";
+import { BrowserAnimationsModule, NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { StoreModule } from "@ngrx/store";
+import { articleReducer } from "./store/article.reducer";
+import { EffectsModule } from "@ngrx/effects";
+import { ArticleEffects } from "./store/article.effects";
+import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
   declarations: [
     AppComponent,
     ArticleListComponent,
-    ArticleComponent
+    ArticleComponent,
+    HighlightPipe
   ],
   imports: [
     BrowserModule,
@@ -32,7 +41,14 @@ import { MatListModule } from "@angular/material/list";
     HttpClientModule,
     MatProgressSpinnerModule,
     ReactiveFormsModule,
-    MatListModule
+    MatListModule,
+    MatInputModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
+    FormsModule,
+    MatIconModule,
+    StoreModule.forRoot({ articles: articleReducer }),
+    EffectsModule.forRoot([ArticleEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]

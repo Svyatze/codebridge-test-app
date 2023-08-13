@@ -31,8 +31,9 @@ export class ArticleComponent implements OnInit {
             this.article = {
               id: article.id,
               title: article.title,
-              content: article.summary,
-              imagePath: article.image_url,
+              summary: article.summary,
+              image_url: article.image_url,
+              published_at: article.published_at,
             }
             this.isLoading = false;
             console.log(this.article);
