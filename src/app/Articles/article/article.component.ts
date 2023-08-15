@@ -21,11 +21,9 @@ export class ArticleComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-        console.log(paramMap);
         if (paramMap.has('articleId')) {
           const articleId = paramMap.get('articleId') as string;
           this.isLoading = true;
-          console.log(articleId, 'articleId');
           this.articleService.getArticleById(articleId).subscribe((article) => {
 
             this.article = {
@@ -36,7 +34,6 @@ export class ArticleComponent implements OnInit {
               published_at: article.published_at,
             }
             this.isLoading = false;
-            console.log(this.article);
           });
         } else {
           this.articleId = ''

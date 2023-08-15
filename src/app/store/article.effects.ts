@@ -13,7 +13,6 @@ export class ArticleEffects {
             switchMap(({ searchTerm }) =>
                 this.articlesService.getArticles(searchTerm).pipe(
                     map((response: any) => ArticleActions.articlesLoaded({ articles: response.results })),
-                    tap((response: any) => console.log(response)),
                     catchError(() => of({ type: '[Article] Load Articles Error' }))
                 )
             )

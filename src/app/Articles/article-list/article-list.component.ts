@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { ArticleModel } from '../article.model';
 import { FormBuilder } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
@@ -16,7 +16,7 @@ import { selectArticles } from "../../store/article.selectors";
     templateUrl: './article-list.component.html',
     styleUrls: ['./article-list.component.scss'],
 })
-export class ArticleListComponent implements OnInit, AfterViewInit {
+export class ArticleListComponent implements OnInit, AfterViewInit, OnDestroy {
     searchValue = '';
     articles$: Observable<ArticleModel[]>;
     resultsNumber = 0;
@@ -36,10 +36,13 @@ export class ArticleListComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit(): void {
         this.initSearchObservable();
-        this.articles$.subscribe(r => console.log(r))
     }
 
-    initSearchObservable() {
+    ngOnDestroy() {
+        this.articles$.subscribe().unsubscribe();
+    }
+
+  initSearchObservable() {
         const inputElement: HTMLInputElement = this.input.nativeElement;
         const searchObservable = new Subject<string>();
 
