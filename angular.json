@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-cdbrdg-test": {
+    "space-news-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-cdbrdg-test",
+            "outputPath": "dist/space-news-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "angular-cdbrdg-test:build:production"
+              "browserTarget": "space-news-app:build:production"
             },
             "development": {
-              "browserTarget": "angular-cdbrdg-test:build:development"
+              "browserTarget": "space-news-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-cdbrdg-test:build"
+            "browserTarget": "space-news-app:build"
           }
         },
         "test": {
